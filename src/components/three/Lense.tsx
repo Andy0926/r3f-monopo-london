@@ -19,7 +19,7 @@ export const Lense: VFC = () => {
   return (
     <Circle
       ref={ref}
-      args={[200, 200]}
+      args={[0.23, 50]}
       position-z={0.01}
       scale={[1 / aspect, 1, 1]}
     >

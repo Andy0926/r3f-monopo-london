@@ -1,6 +1,6 @@
-import React, { Suspense, VFC } from "react";
-import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
+import { Suspense, VFC } from "react";
+import * as THREE from "three";
 import {
   enFragmentShader,
   enVertexShader,
@@ -8,7 +8,6 @@ import {
   jpVertexShader,
 } from "../../modules/glsl/shader";
 import { Background } from "./Background";
-import { Lense } from "./Lense";
 import { TextPlane } from "./TextPlane";
 
 export const TCanvas: VFC = () => {
@@ -24,20 +23,20 @@ export const TCanvas: VFC = () => {
   return (
     <Canvas camera={OrthographicCamera} dpr={window.devicePixelRatio}>
       <Suspense fallback={null}>
-        <Background />
         {/* <Lense /> */}
         <TextPlane
-          text={"RENO"}
+          text={"RECRUIT"}
           blur={true}
           vertexShader={enVertexShader}
           fragmentShader={enFragmentShader}
         />
         <TextPlane
-          text={"RENO"}
+          text={"RECRUIT"}
           blur={false}
           vertexShader={jpVertexShader}
           fragmentShader={jpFragmentShader}
         />
+        <Background />
       </Suspense>
       {/* helper */}
       {/* <Stats /> */}

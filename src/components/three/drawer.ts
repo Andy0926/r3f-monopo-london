@@ -9,8 +9,8 @@ export class Drawer {
 
   constructor(private _text1: string, private _blurry: boolean) {
     const canvas = document.createElement("canvas");
-	canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight / 2;
     this._ctx = canvas.getContext("2d")!;
     this.aspect = canvas.width / canvas.height;
     this.texture = new THREE.CanvasTexture(canvas);
@@ -21,17 +21,14 @@ export class Drawer {
     const { width, height } = this._ctx.canvas;
     ctx.clearRect(0, 0, width, height);
 
-    const fontSize = 200;
+    const fontSize = width * 0.1;
 
     ctx.textAlign = "center"; // Align text to center
     ctx.textBaseline = "middle";
 
     ctx.font = `bold ${fontSize}px 'Poppins'`;
-	//ctx.fillStyle = "#000"; // Replace "#000" with your desired color
-	// ctx.fillRect(0, 0, width, height);
-	
-    const x = width / 2; // X coordinate at the center of the canvas
-    const y = height / 2; // Y coordinate at the center of the canvas
+    //ctx.fillStyle = "#000"; // Replace "#000" with your desired color
+    // ctx.fillRect(0, 0, width, height);
 
     // const text2Metrics = ctx.measureText(this._text2)
     if (this._blurry) {

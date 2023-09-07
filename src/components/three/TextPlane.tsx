@@ -1,7 +1,7 @@
+import { Plane } from "@react-three/drei";
+import { ThreeEvent, useFrame } from "@react-three/fiber";
 import { VFC } from "react";
 import * as THREE from "three";
-import { Plane } from "@react-three/drei";
-import { ThreeEvent, useFrame, useThree } from "@react-three/fiber";
 import { Drawer } from "./drawer";
 
 type TextPlaneProps = {
@@ -17,8 +17,6 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
   const drawer = new Drawer(text, blur);
   drawer.draw();
 
-  const { aspect } = useThree(({ viewport }) => viewport);
-
   const shader: THREE.Shader = {
     uniforms: {
       u_texture: { value: drawer.texture },
@@ -32,7 +30,7 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
 
   const target = new THREE.Vector2();
   useFrame(() => {
-	shader.uniforms.u_mouse.value.copy(target);
+    shader.uniforms.u_mouse.value.lerp(target, 0.1);
   });
 
   const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
@@ -50,8 +48,10 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
 
   return (
     <Plane
-      args={[2.6, 2.6 / drawer.aspect]}
-      scale={[1 / aspect, 1, 1]}
+      // args={[2.6, 2.6 / drawer.aspect]}
+      // scale={[1 / aspect, 1, 1]}
+      args={[2, 2]}
+      scale={[1, 1, 1]}
       onPointerMove={handlePointerMove}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
