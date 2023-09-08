@@ -2,10 +2,10 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, VFC } from "react";
 import * as THREE from "three";
 import {
-  enFragmentShader,
-  enVertexShader,
-  jpFragmentShader,
-  jpVertexShader,
+  blurFragmentShader,
+  blurVertexShader,
+  clearFragmentShader,
+  clearVertexShader,
 } from "../../modules/glsl/shader";
 import { Background } from "./Background";
 import { TextPlane } from "./TextPlane";
@@ -25,16 +25,16 @@ export const TCanvas: VFC = () => {
       <Suspense fallback={null}>
         {/* <Lense /> */}
         <TextPlane
-          text={"RECRUIT"}
+          text={"VUI123"}
           blur={true}
-          vertexShader={enVertexShader}
-          fragmentShader={enFragmentShader}
+          vertexShader={blurVertexShader}
+          fragmentShader={blurFragmentShader}
         />
         <TextPlane
-          text={"RECRUIT"}
+          text={"VUI123"}
           blur={false}
-          vertexShader={jpVertexShader}
-          fragmentShader={jpFragmentShader}
+          vertexShader={clearVertexShader}
+          fragmentShader={clearFragmentShader}
         />
         <Background />
       </Suspense>

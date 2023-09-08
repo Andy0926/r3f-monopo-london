@@ -5,7 +5,14 @@ import { TCanvas } from "./three/TCanvas";
 export const App: VFC = () => {
   return (
     <div className={styles.container}>
-      <TCanvas />
+      <div
+        style={{
+          width: "100vw",
+          height: "50vh",
+        }}
+      >
+        <TCanvas />
+      </div>
     </div>
   );
 };
@@ -13,7 +20,10 @@ export const App: VFC = () => {
 const styles = {
   container: css`
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
-    height: 50vh;
+    height: 100vh;
   `,
 };
