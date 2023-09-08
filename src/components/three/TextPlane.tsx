@@ -43,6 +43,7 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
         window.innerWidth / (window.innerHeight * 0.5);
       shader.uniforms.u_radius.value = 0.15;
     } else {
+      shader.uniforms.u_radius.value = 0.25;
       shader.uniforms.u_mouse.value = target;
       shader.uniforms.u_mouse.value.lerp(target, 0.1);
       shader.uniforms.u_aspect.value =
