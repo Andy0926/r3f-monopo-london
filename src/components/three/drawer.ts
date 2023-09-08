@@ -6,7 +6,17 @@ export class Drawer {
 
   private _ctx;
   private readonly _margin = 130;
+  private handleResize = () => {
+    // Update the canvas width and height
+    this._ctx.canvas.width = window.innerWidth;
+    this._ctx.canvas.height = window.innerHeight / 2;
 
+    // Update the aspect ratio
+    this.aspect = this._ctx.canvas.width / this._ctx.canvas.height;
+
+    // Redraw the canvas
+    this.draw();
+  };
   constructor(private _text1: string, private _blurry: boolean) {
     const canvas = document.createElement("canvas");
     canvas.width = window.innerWidth;
@@ -14,13 +24,16 @@ export class Drawer {
     this._ctx = canvas.getContext("2d")!;
     this.aspect = canvas.width / canvas.height;
     this.texture = new THREE.CanvasTexture(canvas);
-  }
+    // Listen for the resize event
+    window.addEventListener("resize", this.handleResize);
 
+    // Initial draw
+    this.draw();
+  }
   draw = () => {
     const ctx = this._ctx;
     const { width, height } = this._ctx.canvas;
     ctx.clearRect(0, 0, width, height);
-
     const fontSize = width * 0.1;
 
     ctx.textAlign = "center"; // Align text to center
@@ -32,14 +45,9 @@ export class Drawer {
 
     // const text2Metrics = ctx.measureText(this._text2)
     if (this._blurry) {
-      ctx.filter = "blur(5px)"; // Apply blur filter
+      ctx.filter = "blur(10px)"; // Apply blur filter
     }
 
     ctx.fillText(this._text1.split("").join(" "), width / 2, height / 2);
-    // ctx.fillText(this._text2, width - text2Metrics.width - this._margin, height - (fontSize + this._margin))
-
-    // ctx.lineWidth = 3
-    // ctx.strokeStyle = '#f00'
-    // ctx.strokeRect(0, 0, width, height)
   };
 }

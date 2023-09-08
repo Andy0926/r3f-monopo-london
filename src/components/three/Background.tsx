@@ -1,4 +1,4 @@
-import { Plane, useTexture } from "@react-three/drei";
+import { Plane, useAspect, useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { VFC } from "react";
 import * as THREE from "three";
@@ -10,7 +10,7 @@ export const Background: VFC = () => {
   const texture = useTexture(
     process.env.PUBLIC_URL + "/assets/textures/bg-grey.png"
   );
-
+  console.log("Background ASpect from drawer: ", drawer.aspect);
   const shader: THREE.Shader = {
     uniforms: {
       u_time: { value: 0 },
@@ -26,7 +26,8 @@ export const Background: VFC = () => {
 
   useFrame(({ mouse }) => {
     shader.uniforms.u_time.value += 0.005;
-
+    shader.uniforms.u_aspect.value =
+      window.innerWidth / (window.innerHeight * 0.5);
     // Calculate the normalized mouse position with aspect ratio adjustment
     target.set((mouse.x + 1) * 0.5 * aspect, (mouse.y + 1) * 0.5);
 
@@ -72,8 +73,8 @@ void main() {
       sin(uv.x * i * i + u_time*3. ) * sin(uv.y * i * i + u_time*3. );
   }
     
-   vec3 col;
-  tex *=uv.y;
+  vec3 col;
+  // tex *=uv.y;
     
     gl_FragColor = tex;
 }

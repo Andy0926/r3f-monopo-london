@@ -25,13 +25,13 @@ export const TCanvas: VFC = () => {
       <Suspense fallback={null}>
         {/* <Lense /> */}
         <TextPlane
-          text={"VUI123"}
+          text={"RECRUIT"}
           blur={true}
           vertexShader={blurVertexShader}
           fragmentShader={blurFragmentShader}
         />
         <TextPlane
-          text={"VUI123"}
+          text={"RECRUIT"}
           blur={false}
           vertexShader={clearVertexShader}
           fragmentShader={clearFragmentShader}
