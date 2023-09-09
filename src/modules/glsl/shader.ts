@@ -53,6 +53,7 @@ varying vec2 v_uv;
 uniform float u_radius;
 uniform float u_aspect;
 
+
 void main() {
   v_uv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );
@@ -66,6 +67,8 @@ uniform float u_aspect;
 uniform bool u_enable;
 varying vec2 v_uv;
 uniform float u_radius;
+uniform float u_diverge;
+
 
 void main() {
   
@@ -75,7 +78,7 @@ void main() {
   vec2 sub = u_mouse - v_uv;
   sub *= aspect;
 
-  vec2 uv = v_uv - sub * -(dist * 0.3);
+  vec2 uv = v_uv - sub * -(dist * u_diverge);
   vec4 tex_r = texture2D(u_texture, uv);
   vec4 tex_g = texture2D(u_texture, uv );
   vec4 tex_b = texture2D(u_texture, uv );

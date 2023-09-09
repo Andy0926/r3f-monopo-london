@@ -22,22 +22,21 @@ export const TCanvas: VFC = () => {
 
   return (
     <Canvas camera={OrthographicCamera} dpr={window.devicePixelRatio}>
-      <Suspense fallback={null}>
-        {/* <Lense /> */}
-        <TextPlane
-          text={"RECRUIT"}
-          blur={true}
-          vertexShader={blurVertexShader}
-          fragmentShader={blurFragmentShader}
-        />
-        <TextPlane
-          text={"RECRUIT"}
-          blur={false}
-          vertexShader={clearVertexShader}
-          fragmentShader={clearFragmentShader}
-        />
-        <Background />
-      </Suspense>
+      {/* <Lense /> */}
+      <TextPlane
+        text={"RECRUIT"}
+        blur={true}
+        vertexShader={blurVertexShader}
+        fragmentShader={blurFragmentShader}
+      />
+      <TextPlane
+        text={"RECRUIT"}
+        blur={false}
+        vertexShader={clearVertexShader}
+        fragmentShader={clearFragmentShader}
+      />
+      <Background />
+
       {/* helper */}
       {/* <Stats /> */}
     </Canvas>

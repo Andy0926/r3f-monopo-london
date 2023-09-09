@@ -13,6 +13,7 @@ export class Drawer {
 
     // Update the aspect ratio
     this.aspect = this._ctx.canvas.width / this._ctx.canvas.height;
+    this._ctx.clearRect(0, 0, this._ctx.canvas.width, this._ctx.canvas.height);
 
     // Redraw the canvas
     this.draw();
@@ -34,7 +35,7 @@ export class Drawer {
     const ctx = this._ctx;
     const { width, height } = this._ctx.canvas;
     ctx.clearRect(0, 0, width, height);
-    const fontSize = width * 0.1;
+    const fontSize = width * 0.125;
 
     ctx.textAlign = "center"; // Align text to center
     ctx.textBaseline = "middle";

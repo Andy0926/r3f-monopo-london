@@ -10,7 +10,7 @@ export const Background: VFC = () => {
   const texture = useTexture(
     process.env.PUBLIC_URL + "/assets/textures/bg-grey.png"
   );
-  console.log("Background ASpect from drawer: ", drawer.aspect);
+  // console.log("Background ASpect from drawer: ", drawer.aspect);
   const shader: THREE.Shader = {
     uniforms: {
       u_time: { value: 0 },

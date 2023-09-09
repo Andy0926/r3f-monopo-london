@@ -17,13 +17,16 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
   const drawer = new Drawer(text, blur);
 
   drawer.draw();
+  //trigger re-render
+  const threeAspect = useAspect(window.innerWidth, window.innerHeight / 2, 1);
   const shader: THREE.Shader = {
     uniforms: {
       u_texture: { value: drawer.texture },
       u_mouse: { value: new THREE.Vector2() },
       u_aspect: { value: drawer.aspect },
       u_enable: { value: false },
-      u_radius: { value: 0.25 },
+      u_radius: { value: 0.3 },
+      u_diverge: { value: 0.25 },
     },
     vertexShader,
     fragmentShader,
@@ -41,13 +44,15 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
       };
       shader.uniforms.u_aspect.value =
         window.innerWidth / (window.innerHeight * 0.5);
-      shader.uniforms.u_radius.value = 0.15;
+      shader.uniforms.u_radius.value = 0.1;
+      shader.uniforms.u_aspect.value = drawer.aspect;
+      shader.uniforms.u_diverge.value = 0.4;
     } else {
-      shader.uniforms.u_radius.value = 0.25;
+      shader.uniforms.u_radius.value = 0.3;
       shader.uniforms.u_mouse.value = target;
       shader.uniforms.u_mouse.value.lerp(target, 0.1);
-      shader.uniforms.u_aspect.value =
-        window.innerWidth / (window.innerHeight * 0.5);
+      shader.uniforms.u_aspect.value = drawer.aspect;
+      shader.uniforms.u_diverge.value = 0.25;
     }
   });
 
