@@ -1,6 +1,6 @@
 import { Plane, useAspect } from "@react-three/drei";
 import { ThreeEvent, useFrame } from "@react-three/fiber";
-import { VFC, useEffect, useState } from "react";
+import { VFC } from "react";
 import * as THREE from "three";
 import { Drawer } from "./drawer";
 
@@ -18,7 +18,7 @@ export const TextPlane: VFC<TextPlaneProps> = (props) => {
 
   drawer.draw();
   //trigger re-render
-  const threeAspect = useAspect(window.innerWidth, window.innerHeight / 2, 1);
+  const __threeAspect = useAspect(window.innerWidth, window.innerHeight / 2, 1);
   const shader: THREE.Shader = {
     uniforms: {
       u_texture: { value: drawer.texture },

@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, VFC } from "react";
+import { VFC } from "react";
 import * as THREE from "three";
 import {
   blurFragmentShader,
